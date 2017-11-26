@@ -204,6 +204,25 @@ class API(object):
 
     """HTTP Private API"""
 
+    def getpermissions(self, **params):
+        """API キーの権限を取得
+
+        この API キーで呼出可能な HTTP Private API の一覧を取得できます。
+
+        API Type
+        --------
+        HTTP Private API
+
+        Docs
+        ----
+        https://lightning.bitflyer.jp/docs/api#api-キーの権限を取得
+        """
+        if not all([self.api_key, self.api_secret]):
+            raise AuthException()
+
+        endpoint = "/v1/me/getpermissions"
+        return self.request(endpoint, params=params)
+
     def getbalance(self, **params):
         """Get Account Asset Balance
 
